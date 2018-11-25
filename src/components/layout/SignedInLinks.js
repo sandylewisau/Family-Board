@@ -1,8 +1,16 @@
 import React, {Component} from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink as ReactNavLink } from 'react-router-dom';
 import {connect} from 'react-redux';
 import {signOut} from '../../store/actions/authActions';
 import { withRouter } from 'react-router'
+
+import {
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem } from 'reactstrap';
 
 class SignedInLinks extends Component {
 // const SignedInLinks = (props) => {
@@ -14,11 +22,23 @@ class SignedInLinks extends Component {
 
   render() {
     return (
-      <ul className="navbar-nav ml-auto">
-        <li className="nav-item"><NavLink to='/' className="nav-link"><span className="pl-3 pr-3" role="img" aria-labelledby="jsx-a11y/accessible-emoji">🏠</span></NavLink></li>
-        <li className="nav-item"><NavLink to='/family/dashboard' className="nav-link">Family</NavLink></li>
-        <li className="nav-item"><span className="nav-link" onClick={e=>this.logoutHandler(e)}>Log Out</span></li>
-      </ul>
+      <>
+        <NavItem>
+          <NavLink onClick={e=>this.logoutHandler(e)}>Log out</NavLink>
+        </NavItem>
+        <UncontrolledDropdown nav inNavbar>
+          <DropdownToggle nav caret>
+            Admin
+          </DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>
+              <ReactNavLink to="/family/dashboard" className="text-info">Family</ReactNavLink>
+            </DropdownItem>
+          </DropdownMenu>
+        </UncontrolledDropdown>
+      </>
+
+
     )
   }
 }

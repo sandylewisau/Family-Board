@@ -18,5 +18,17 @@ code {
 
 
 .app-body {
-  margin-top: 80px;
+  // margin-top: 80px;
+}
+
+.emoji-card-top,
+.emoji-card-top span {
+  min-height: 180px;
+  line-height: 180px;
+}
+
+.portfolio-item .card {
+  &:hover {
+    background-color: #d5d5d5;
+  }
 }

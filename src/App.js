@@ -12,7 +12,7 @@ import CreateFamilyMember from './components/family/CreateFamilyMember';
 // import CreateProject from './components/projects/CreateProject';
 import AuthGuard from './components/auth/authGuard';
 
-import Navbar from './components/layout/Navbar';
+import Navigation from './components/layout/Navbar';
 
 class App extends Component {
   render() {
@@ -20,12 +20,10 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
 
-          <Navbar></Navbar>
-
-          
+          <Navigation></Navigation>
 
           <div className="container app-body">
-            <h1 className="display-2 text-center">
+            <h1 className="display-2 text-center pt-3 pb-3">
               <span className="pl-3 pr-3" role="img" aria-labelledby="jsx-a11y/accessible-emoji">👨🏻‍</span>
               <span className="pl-3 pr-3" role="img" aria-labelledby="jsx-a11y/accessible-emoji">👩🏻‍</span>
               <span className="pl-3 pr-3" role="img" aria-labelledby="jsx-a11y/accessible-emoji">👧🏻</span>

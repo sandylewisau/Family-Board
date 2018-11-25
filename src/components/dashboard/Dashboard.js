@@ -5,7 +5,7 @@ import {compose} from 'redux';
 import {connect} from 'react-redux';
 import {firestoreConnect} from 'react-redux-firebase';
 import {Redirect} from 'react-router-dom'
-
+import AdventDashboard from '../advent-calendar/Dashboard';
 
 class Dashboard extends Component {
 
@@ -27,24 +27,49 @@ class Dashboard extends Component {
         </div> */}
         <div className="row">
           <div className="col-sm-6 portfolio-item">
+            <AdventDashboard />
+          </div>
+          <div className="col-sm-6 portfolio-item">
             <div className="card h-100">
-              <div><img className="card-img-top" src="http://placehold.it/700x400" alt="" /></div>
+              <div className="emoji-card-top display-2 text-center card-img-top">
+                <span className="pl-3 pr-3" role="img" aria-labelledby="jsx-a11y/accessible-emoji">💰</span>
+              </div>
               <div className="card-body">
                 <h4 className="card-title">
-                  <div>Project One</div>
+                  <div>Pocket Money</div>
                 </h4>
-                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                <p className="card-text">Coming soon!</p>
+                <p className="card-text">See how your pocket money is tracking. Build those bonuses!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row pt-3">
+          <div className="col-sm-6 portfolio-item">
+          <div className="card h-100">
+              <div className="emoji-card-top display-2 text-center card-img-top">
+                <span className="pl-3 pr-3" role="img" aria-labelledby="jsx-a11y/accessible-emoji">🗓️</span>
+              </div>
+              <div className="card-body">
+                <h4 className="card-title">
+                  <div>Calendar</div>
+                </h4>
+                <p className="card-text">Coming soon!</p>
+                <p className="card-text">See upcoming events</p>
               </div>
             </div>
           </div>
           <div className="col-sm-6 portfolio-item">
             <div className="card h-100">
-              <div><img className="card-img-top" src="http://placehold.it/700x400" alt="" /></div>
+              <div className="emoji-card-top display-2 text-center card-img-top">
+                <span className="pl-3 pr-3" role="img" aria-labelledby="jsx-a11y/accessible-emoji">⛅</span>
+              </div>
               <div className="card-body">
                 <h4 className="card-title">
-                  <div>Project One</div>
+                  <div>Weather</div>
                 </h4>
-                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                <p className="card-text">Coming soon!</p>
+                <p className="card-text">See what the day holds instore</p>
               </div>
             </div>
           </div>

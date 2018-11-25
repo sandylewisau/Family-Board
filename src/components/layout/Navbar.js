@@ -1,29 +1,57 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem } from 'reactstrap';
 
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
+import Today from './Today';
+import { NavLink as ReactNavLink } from 'react-router-dom';
 
-const Navbar = (props) => {
-  const {auth, profile} = props;
+class Navigation extends Component {
+// const Navigation = (props) => {
+  
 
-  const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />;
+  constructor(props) {
+    super(props);
 
-  return (
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  } 
 
-    <nav className="navbar navbar-expand-sm navbar-dark bg-info fixed-top">
-      <div className="container">
-        {/* <a className="navbar-brand" href="#">Start Bootstrap</a> */}
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarResponsive">
-          {links}
-        </div>
-      </div>
-    </nav>
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  };
 
-  )
+  render() {
+    const {auth, profile} = this.props;
+    const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />;
+
+    return (
+
+      <Navbar color="info" dark expand="md">
+        <NavbarBrand>
+          <ReactNavLink to="/" className="text-white">
+            <Today />
+          </ReactNavLink>
+        </NavbarBrand>
+        <NavbarToggler onClick={this.toggle} />
+        <Collapse isOpen={this.state.isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+            {links}
+          </Nav>
+        </Collapse>
+      </Navbar>
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
@@ -33,4 +61,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps)(Navigation);
