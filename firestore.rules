@@ -11,5 +11,8 @@ service cloud.firestore {
     match /familyMembers/{familyMember} {
       allow read, write: if request.auth.uid != null;
     }
+    match /advent/{day=**} {
+      allow read, write: if request.auth.uid != null;
+    }
   }
 }

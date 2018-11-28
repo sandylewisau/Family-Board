@@ -13,6 +13,9 @@ import CreateFamilyMember from './components/family/CreateFamilyMember';
 import AuthGuard from './components/auth/authGuard';
 
 import Navigation from './components/layout/Navbar';
+import AdventDashboard from './components/advent-calendar/AdventDashboard';
+import CreateDate from './components/advent-calendar/CreateDate';
+import ManageDate from './components/advent-calendar/ManageDate';
 
 class App extends Component {
   render() {
@@ -32,11 +35,14 @@ class App extends Component {
 
             <Switch>
               <Route exact path="/" component={AuthGuard(Dashboard)} />
-              <Route exact path="/family/dashboard" component={FamilyDashboard} />
               <Route path="/signin" component={SignIn} />
               <Route path="/signup" component={SignUp} />
+              <Route exact path="/family/dashboard" component={FamilyDashboard} />
               <Route path="/family/create-family" component={CreateFamily} />
               <Route path="/family/create-family-member" component={AuthGuard(CreateFamilyMember)} />
+              <Route exact path="/advent/dashboard" component={AdventDashboard} />
+              <Route exact path="/advent/create-date" component={CreateDate} />
+              <Route exact path="/advent/edit/:id" component={ManageDate} />
             </Switch>
 
 

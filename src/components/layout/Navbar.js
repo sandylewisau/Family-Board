@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+import { NavLink as ReactNavLink } from 'react-router-dom';
+import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler } from 'reactstrap';
 
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 import Today from './Today';
-import { NavLink as ReactNavLink } from 'react-router-dom';
 
 class Navigation extends Component {
 // const Navigation = (props) => {

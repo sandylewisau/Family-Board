@@ -32,3 +32,11 @@ code {
     background-color: #d5d5d5;
   }
 }
+
+
+// React Components
+
+$font-path: '~react-widgets/lib/fonts';
+$img-path: '~react-widgets/lib/img';
+
+@import '~react-widgets/lib/scss/react-widgets';

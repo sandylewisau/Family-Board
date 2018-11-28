@@ -3,13 +3,16 @@ import authReducer from './authReducer';
 import {combineReducers} from 'redux';
 import {firestoreReducer} from 'redux-firestore';
 import { firebaseReducer } from 'react-redux-firebase';
+import adventReducer from './adventReducer';
+import familyReducer from './familyReducer';
 
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  // project: projectReducer,
   firestore: firestoreReducer,
-  firebase: firebaseReducer
+  firebase: firebaseReducer,
+  advent: adventReducer,
+  family: familyReducer
 })
 
 export default rootReducer;

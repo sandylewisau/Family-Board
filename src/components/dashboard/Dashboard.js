@@ -5,7 +5,7 @@ import {compose} from 'redux';
 import {connect} from 'react-redux';
 import {firestoreConnect} from 'react-redux-firebase';
 import {Redirect} from 'react-router-dom'
-import AdventDashboard from '../advent-calendar/Dashboard';
+import AdventFeatureCard from '../advent-calendar/AdventFeatureCard';
 
 class Dashboard extends Component {
 
@@ -26,10 +26,10 @@ class Dashboard extends Component {
           </div>
         </div> */}
         <div className="row">
-          <div className="col-sm-6 portfolio-item">
-            <AdventDashboard />
+          <div className="col-sm-6 portfolio-item pb-3">
+            <AdventFeatureCard />
           </div>
-          <div className="col-sm-6 portfolio-item">
+          <div className="col-sm-6 portfolio-item pb-3">
             <div className="card h-100">
               <div className="emoji-card-top display-2 text-center card-img-top">
                 <span className="pl-3 pr-3" role="img" aria-labelledby="jsx-a11y/accessible-emoji">💰</span>
@@ -44,8 +44,8 @@ class Dashboard extends Component {
             </div>
           </div>
         </div>
-        <div className="row pt-3">
-          <div className="col-sm-6 portfolio-item">
+        <div className="row">
+          <div className="col-sm-6 portfolio-item pb-3">
           <div className="card h-100">
               <div className="emoji-card-top display-2 text-center card-img-top">
                 <span className="pl-3 pr-3" role="img" aria-labelledby="jsx-a11y/accessible-emoji">🗓️</span>
@@ -59,7 +59,7 @@ class Dashboard extends Component {
               </div>
             </div>
           </div>
-          <div className="col-sm-6 portfolio-item">
+          <div className="col-sm-6 portfolio-item pb-3">
             <div className="card h-100">
               <div className="emoji-card-top display-2 text-center card-img-top">
                 <span className="pl-3 pr-3" role="img" aria-labelledby="jsx-a11y/accessible-emoji">⛅</span>
@@ -84,7 +84,7 @@ const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
     family: state.firestore.ordered.family,
-    familyMembers: state.firestore.ordered.familyMembers,
+    familyMembers: state.firestore.ordered.familyMembers
   }
 }
 
