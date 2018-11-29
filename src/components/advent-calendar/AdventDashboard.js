@@ -21,18 +21,22 @@ class AdventDashboard extends Component {
     if (familyMembers && familyMembers.length === 0) return <Redirect to="/family/create-family-member" />
     
 
-
+    console.log('advent', advent);
     return (
       <div className="container">
         <Link to='./create-date'>Create</Link>
-        <AdventCalendar events={advent} />
+        {
+          
+          advent && <AdventCalendar events={advent} />
+        }
+        
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log('stately',state)
+  console.log('dashState',state)
   return {
     auth: state.firebase.auth,
     family: state.firestore.ordered.family,

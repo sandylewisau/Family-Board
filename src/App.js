@@ -16,6 +16,7 @@ import Navigation from './components/layout/Navbar';
 import AdventDashboard from './components/advent-calendar/AdventDashboard';
 import CreateDate from './components/advent-calendar/CreateDate';
 import ManageDate from './components/advent-calendar/ManageDate';
+import AdventDateDetail from './components/advent-calendar/AdventDateDetail';
 
 class App extends Component {
   render() {
@@ -26,7 +27,7 @@ class App extends Component {
           <Navigation></Navigation>
 
           <div className="container app-body">
-            <h1 className="display-2 text-center pt-3 pb-3">
+            <h1 className="display-4 text-center pt-3 pb-3">
               <span className="pl-3 pr-3" role="img" aria-labelledby="jsx-a11y/accessible-emoji">👨🏻‍</span>
               <span className="pl-3 pr-3" role="img" aria-labelledby="jsx-a11y/accessible-emoji">👩🏻‍</span>
               <span className="pl-3 pr-3" role="img" aria-labelledby="jsx-a11y/accessible-emoji">👧🏻</span>
@@ -43,6 +44,7 @@ class App extends Component {
               <Route exact path="/advent/dashboard" component={AdventDashboard} />
               <Route exact path="/advent/create-date" component={CreateDate} />
               <Route exact path="/advent/edit/:id" component={ManageDate} />
+              <Route exact path="/advent/date-detail/:id" component={AdventDateDetail} />
             </Switch>
 
 

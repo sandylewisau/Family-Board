@@ -10,7 +10,8 @@ const AdventCalendar = ({events}) => {
           events && events.map(event => {
             return (
               <div className="row pb-2" key={event.id}>
-                <Link to={'./edit/'+ event.id}>{moment(event.openDate.toDate()).format('LLL')}</Link>
+                <Link to={'./edit/'+ event.id}>{moment(event.openDate.toDate()).format('LLL')}</Link> - 
+                <Link to={'./date-detail/'+ event.id} className="btn btn-info btn-sm">View Detail</Link>
               </div>
             )
           })

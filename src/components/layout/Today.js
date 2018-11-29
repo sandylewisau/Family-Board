@@ -27,7 +27,7 @@ class Today extends Component {
 
   render() {
     return (
-      <h2>{moment(this.state.time).locale('en-au').format('D MMM - LTS')}</h2>
+      <h3>{moment(this.state.time).locale('en-au').format('D MMM - LTS')}</h3>
     );
   }
 } 
