@@ -17,6 +17,7 @@ import AdventDashboard from './components/advent-calendar/AdventDashboard';
 import CreateDate from './components/advent-calendar/CreateDate';
 import ManageDate from './components/advent-calendar/ManageDate';
 import AdventDateDetail from './components/advent-calendar/AdventDateDetail';
+import AdminDashboard from './components/admin/AdminDashboard';
 
 class App extends Component {
   render() {
@@ -45,6 +46,7 @@ class App extends Component {
               <Route exact path="/advent/create-date" component={CreateDate} />
               <Route exact path="/advent/edit/:id" component={ManageDate} />
               <Route exact path="/advent/date-detail/:id" component={AdventDateDetail} />
+              <Route exact path="/admin/dashboad" component={AdminDashboard} />
             </Switch>
 
 

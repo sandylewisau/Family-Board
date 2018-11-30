@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink as ReactNavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler } from 'reactstrap';
 
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 import Today from './Today';
 
-class Navigation extends Component {
-// const Navigation = (props) => {
-  
+class Navigation extends Component { 
 
   constructor(props) {
     super(props);
@@ -32,19 +30,17 @@ class Navigation extends Component {
 
     return (
 
+
       <Navbar color="info" dark expand="md">
-        <NavbarBrand>
-          <ReactNavLink to="/" className="text-white">
-            <Today />
-          </ReactNavLink>
-        </NavbarBrand>
+        <NavbarBrand tag={Link} to="/"><Today /></NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            {links}
+            { links }
           </Nav>
         </Collapse>
       </Navbar>
+      
     )
   }
 }

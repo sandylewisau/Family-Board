@@ -15,13 +15,13 @@ const AdventDateDetail = (props) => {
     // console.log('adventFiles', adventFiles);
     return (
       <div>
-        <div class="jumbotron advent-detail">
-          <h1 class="display-4">Day {moment(adventDoc.openDate.toDate()).format('D')}</h1>
+        <div className="jumbotron advent-detail">
+          <h1 className="display-4">Day {moment(adventDoc.openDate.toDate()).format('D')}</h1>
           
           {
             adventDoc.quote && adventDoc.quote.length > 0 &&
               <blockquote className="blockquote">
-              <p class="mb-0">&ldquo;{adventDoc.quote}&rdquo;</p>
+              <p className="mb-0">&ldquo;{adventDoc.quote}&rdquo;</p>
               <footer className="blockquote-footer">
                 <cite title="Source Title">{adventDoc.quoteBy}</cite>
               </footer>
@@ -51,7 +51,6 @@ const AdventDateDetail = (props) => {
 
 const mapStateToProps = (state, ownProps) => {
 
-  const id = ownProps.match.params.id;
   const advents = state.firestore.ordered.adventDoc;
   const rec = advents ? advents[0] : null;
 

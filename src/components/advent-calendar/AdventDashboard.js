@@ -1,35 +1,44 @@
-import React, {Component} from 'react';
-// import Notifications from './Notifications'
-// import ProjectList from '../projects/ProjectList';
-import {compose} from 'redux';
-import {connect} from 'react-redux';
-import {firestoreConnect} from 'react-redux-firebase';
-import {Redirect} from 'react-router-dom'
-import { Link } from 'react-router-dom';
+import moment from 'moment';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { Redirect } from 'react-router-dom';
+import { compose } from 'redux';
+
 import AdventCalendar from './AdventCalendar';
 
+const todayDate = moment().startOf('day').add(1,'minute');
 
 class AdventDashboard extends Component {
   
   render() {
     const { advent } = this.props;
     // const {projects, auth, notifications} = this.props;
-    const { auth, family, familyMembers } = this.props;
+    const { profile, auth, family, familyMembers } = this.props;
     if (!auth.uid) return <Redirect to="/signin" />
+
+    const isAdmin = profile.roles && profile.roles.admin ? true : false;
 
     if (family && family.length === 0) return <Redirect to="/family/create-family" />
     if (familyMembers && familyMembers.length === 0) return <Redirect to="/family/create-family-member" />
     
+    const adventy = advent && advent.length ? (
+      <AdventCalendar events={advent} isAdmin={isAdmin} />
+    ) : (
+      <div className="container">
+        <h4>Check back soon!</h4>
+        <button onClick={this.props.history.goBack} className="btn btn-info">Back</button>
+      </div>
+    )
 
-    console.log('advent', advent);
     return (
       <div className="container">
-        <Link to='./create-date'>Create</Link>
+        {/* <Link to='./create-date'>Create</Link> */}
         {
-          
-          advent && <AdventCalendar events={advent} />
+          adventy
         }
         
+
       </div>
     )
   }
@@ -38,6 +47,7 @@ class AdventDashboard extends Component {
 const mapStateToProps = (state) => {
   console.log('dashState',state)
   return {
+    profile: state.firebase.profile,
     auth: state.firebase.auth,
     family: state.firestore.ordered.family,
     advent: state.firestore.ordered.advent
@@ -48,6 +58,12 @@ export default compose(
   connect(mapStateToProps),
   firestoreConnect([
     { collection: 'family'},
-    { collection: 'advent', orderBy: ['openDate', 'asc']}
+    { 
+      collection: 'advent', 
+      orderBy: ['openDate', 'desc'],
+      where: [
+        ['openDate', '<', todayDate.toDate()],
+      ]
+    }
   ])
 )(AdventDashboard);

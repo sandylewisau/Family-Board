@@ -21,12 +21,11 @@ class SignedInLinks extends Component {
   }
 
   render() {
-    return (
-      <>
-        <NavItem>
-          <NavLink onClick={e=>this.logoutHandler(e)}>Log out</NavLink>
-        </NavItem>
-        <UncontrolledDropdown nav inNavbar>
+    const { profile } = this.props;
+
+    console.log('profile', profile );
+    const isAdmin = profile.roles && profile.roles.admin ? (
+      <UncontrolledDropdown nav inNavbar>
           <DropdownToggle nav caret>
             Admin
           </DropdownToggle>
@@ -36,10 +35,26 @@ class SignedInLinks extends Component {
             </DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>
+    ) : (
+      null
+    )
+
+    return (
+      <>
+        <NavItem>
+          <NavLink onClick={e=>this.logoutHandler(e)}>Log out</NavLink>
+        </NavItem>
+        { isAdmin }
       </>
 
 
     )
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    profile: state.firebase.profile,
   }
 }
 
@@ -49,4 +64,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(SignedInLinks));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignedInLinks));
