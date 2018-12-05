@@ -7,10 +7,8 @@ import { compose } from 'redux';
 
 import AdventCalendar from './AdventCalendar';
 
-const todayDate = moment().startOf('day').add(1,'minute');
-
 class AdventDashboard extends Component {
-  
+
   render() {
     const { advent } = this.props;
     // const {projects, auth, notifications} = this.props;
@@ -45,12 +43,19 @@ class AdventDashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('dashState',state)
+  console.log('dashState',state, )
+  const recy = state.firestore.ordered.advent && state.firestore.ordered.advent.filter(x => {
+    console.log('filt adv dash')
+    if (x.openDate.seconds*1000 < moment().format('x')) {
+      return x;
+    }
+    return null;
+  })
   return {
     profile: state.firebase.profile,
     auth: state.firebase.auth,
     family: state.firestore.ordered.family,
-    advent: state.firestore.ordered.advent
+    advent: recy
   }
 }
 
@@ -61,9 +66,6 @@ export default compose(
     { 
       collection: 'advent', 
       orderBy: ['openDate', 'desc'],
-      where: [
-        ['openDate', '<', todayDate.toDate()],
-      ]
     }
   ])
 )(AdventDashboard);

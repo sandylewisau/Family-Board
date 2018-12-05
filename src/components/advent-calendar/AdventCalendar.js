@@ -9,6 +9,7 @@ const AdventCalendar = ({events, isAdmin}) => {
     <ul className="list-unstyled">
         {
           events && events.map(event => {
+            console.log('event', event)
             return (
               <li className="media mb-5" key={event.id}>
               <Link to={'./date-detail/'+ event.id}><span className="pl-3 pr-3 mr-3 display-1" role="img" aria-labelledby="jsx-a11y/accessible-emoji">🎁</span></Link>

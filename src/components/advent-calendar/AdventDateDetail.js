@@ -26,9 +26,7 @@ const AdventDateDetail = (props) => {
                 <cite title="Source Title">{adventDoc.quoteBy}</cite>
               </footer>
             </blockquote>
-          }
-
-          
+          }          
         </div>
         {
           adventFiles && adventFiles.map(file => {
