@@ -13,11 +13,11 @@ class AdventFeatureCard extends Component {
     if (!auth.uid) return <Redirect to="/signin" />
 
     const curDate = new Date();
-    const decDate = new Date(2018,11,1);
+    const decDate = new Date(2019, 11, 1);
 
     if (family && family.length === 0) return <Redirect to="/family/create-family" />
     if (familyMembers && familyMembers.length === 0) return <Redirect to="/family/create-family-member" />
-    
+
     const heading = curDate < decDate ? "Christmas is around the corner!" : "Count down to Christmas";
 
     return (
@@ -40,7 +40,7 @@ class AdventFeatureCard extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('stately',state)
+  console.log('stately', state)
   return {
     auth: state.firebase.auth,
     family: state.firestore.ordered.family
@@ -50,6 +50,6 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    { collection: 'family'}
+    { collection: 'family' }
   ])
 )(AdventFeatureCard);

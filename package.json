@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.1.3",
+    "axios": "^0.18.1",
+    "bootstrap": "^4.3.1",
+    "fetch": "^1.1.0",
     "firebase": "^5.5.8",
     "globalize": "^1.4.0",
+    "kelvin-to-celsius": "^1.1.0",
     "moment": "^2.22.2",
     "node-sass": "^4.10.0",
     "react": "^16.6.3",
@@ -22,7 +25,9 @@
     "reactstrap": "^6.5.0",
     "redux": "^4.0.1",
     "redux-firestore": "^0.5.8",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "xml-js": "^1.6.8",
+    "xml2json": "^0.11.2"
   },
   "scripts": {
     "start": "react-scripts start",

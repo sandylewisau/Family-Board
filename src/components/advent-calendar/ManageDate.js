@@ -4,10 +4,10 @@ import FileUploader from 'react-firebase-file-uploader';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-
+import { Link } from 'react-router-dom';
 import { createDate, createDateFile } from '../../store/actions/adventActions';
 
- 
+
 class ManageDate extends Component {
   state = {
     adventImage: "",
@@ -16,13 +16,13 @@ class ManageDate extends Component {
     progress: 0,
     adventImageURL: "",
   };
- 
+
   handleChange = (e) => {
     this.setState({
       [e.target.id]: e.target.value
     })
     console.log('statesub1', this.state);
-  } 
+  }
 
   handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
   handleProgress = progress => this.setState({ progress });
@@ -40,21 +40,20 @@ class ManageDate extends Component {
       .ref("adventImages")
       .child(filename)
       .getDownloadURL()
-      .then(url => 
-        {
-          this.setState({ adventImageURL: url, dateId: id })
+      .then(url => {
+        this.setState({ adventImageURL: url, dateId: id })
 
-          this.props.createDateFile(this.state);
-          this.setState({...this.state});
-        }
+        this.props.createDateFile(this.state);
+        this.setState({ ...this.state });
+      }
       );
   };
 
-   /**
-  * Custom onChange event handler
-  * Store selected files in the state
-  */
- customOnChangeHandler = (event) => {
+  /**
+ * Custom onChange event handler
+ * Store selected files in the state
+ */
+  customOnChangeHandler = (event) => {
     const { target: { files } } = event;
     const filesToStore = [];
 
@@ -73,10 +72,11 @@ class ManageDate extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
   }
- 
+
   render() {
     return (
       <div className="container">
+        <Link to='../dashboard'>Dashboard</Link> - <Link to={`../date-detail/${this.props.match.params.id}`}>View</Link>
         <form className="white" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="imageName">Image name:</label>
@@ -88,10 +88,11 @@ class ManageDate extends Component {
               onChange={this.handleChange}
             />
           </div>
+
           <div className="form-group">
             <label htmlFor="adventImage">File:</label>
             {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-            {this.state.adventImageURL && <img src={this.state.adventImageURL} className="img-thumbnail" alt="Uploaded" />}
+
             <FileUploader
               accept="image/*"
               id="adventImage"
@@ -103,8 +104,10 @@ class ManageDate extends Component {
               onUploadSuccess={this.handleUploadSuccess}
               onProgress={this.handleProgress}
             />
+            <button onClick={this.startUploadManually}>Upload all the things</button>
+            {this.state.adventImageURL && <img src={this.state.adventImageURL} className="img-thumbnail" alt="Uploaded" />}
           </div>
-          <button onClick={this.startUploadManually}>Upload all the things</button>
+
           {/* <button className="btn btn-primary">Upload Image</button> */}
         </form>
       </div>
@@ -132,7 +135,7 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([
-    { collection: 'familyMembers', orderBy: ['createdAt', 'asc']},
-    { collection: 'family'},
+    { collection: 'familyMembers', orderBy: ['createdAt', 'asc'] },
+    { collection: 'family' },
   ])
 )(ManageDate);

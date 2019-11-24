@@ -27,13 +27,13 @@ class App extends Component {
 
           <Navigation></Navigation>
 
-          <div className="container app-body">
-            <h1 className="display-4 text-center pt-3 pb-3">
+          <div className="container app-body pt-3">
+            {/* <h1 className="display-4 text-center pt-3 pb-3">
               <span className="pl-3 pr-3" role="img" aria-labelledby="jsx-a11y/accessible-emoji">👨🏻‍</span>
               <span className="pl-3 pr-3" role="img" aria-labelledby="jsx-a11y/accessible-emoji">👩🏻‍</span>
               <span className="pl-3 pr-3" role="img" aria-labelledby="jsx-a11y/accessible-emoji">👧🏻</span>
               <span className="pl-3 pr-3" role="img" aria-labelledby="jsx-a11y/accessible-emoji">👦🏻‍</span>
-            </h1>
+            </h1> */}
 
             <Switch>
               <Route exact path="/" component={AuthGuard(Dashboard)} />

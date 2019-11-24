@@ -19,15 +19,15 @@ class AdventDashboard extends Component {
 
     if (family && family.length === 0) return <Redirect to="/family/create-family" />
     if (familyMembers && familyMembers.length === 0) return <Redirect to="/family/create-family-member" />
-    
+
     const adventy = advent && advent.length ? (
       <AdventCalendar events={advent} isAdmin={isAdmin} />
     ) : (
-      <div className="container">
-        <h4>Check back soon!</h4>
-        <button onClick={this.props.history.goBack} className="btn btn-info">Back</button>
-      </div>
-    )
+        <div className="container">
+          <h4>Check back soon!</h4>
+          <button onClick={this.props.history.goBack} className="btn btn-info">Back</button>
+        </div>
+      )
 
     return (
       <div className="container">
@@ -35,7 +35,7 @@ class AdventDashboard extends Component {
         {
           adventy
         }
-        
+
 
       </div>
     )
@@ -43,12 +43,15 @@ class AdventDashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('dashState',state, )
+  console.log('dashState', state)
   const recy = state.firestore.ordered.advent && state.firestore.ordered.advent.filter(x => {
     console.log('filt adv dash')
-    if (x.openDate.seconds*1000 < moment().format('x')) {
+    if (x.openDate.seconds * 1000 > moment('11/11/2019').format('x') && x.openDate.seconds * 1000 < moment().format('x')) {
       return x;
     }
+    // if (x.openDate.seconds * 1000 > moment('11/11/2019').format('x')) {
+    //   return x;
+    // }
     return null;
   })
   return {
@@ -62,9 +65,9 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    { collection: 'family'},
-    { 
-      collection: 'advent', 
+    { collection: 'family' },
+    {
+      collection: 'advent',
       orderBy: ['openDate', 'desc'],
     }
   ])

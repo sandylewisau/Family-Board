@@ -12,13 +12,13 @@ import { createDate } from '../../store/actions/adventActions';
 moment.locale('en')
 momentLocalizer()
 
- 
+
 class CreateDate extends Component {
   state = {
-    openDate: new Date(2018,11,1),
+    openDate: new Date(2019, 11, 1),
     opened: false
   };
- 
+
 
 
   handleDateChange = (val) => {
@@ -31,14 +31,14 @@ class CreateDate extends Component {
     this.setState({
       [e.target.id]: e.target.value
     })
-  } 
+  }
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.createDate(this.state);
-    this.setState({...this.state})
+    this.setState({ ...this.state })
     this.props.history.push('./dashboard')
   }
- 
+
   render() {
     return (
       <div className="container">
@@ -47,25 +47,25 @@ class CreateDate extends Component {
 
           <div className="form-group">
             <label htmlFor="firstName">Date</label>
-            <Calendar 
+            <Calendar
               id="openDate"
-              currentDate={new Date(2018,11,1)}
+              currentDate={new Date(2019, 11, 1)}
               value={this.state.value}
               onChange={this.handleDateChange}
-              min={new Date(2018,11,1)}
-              max={new Date(2018,11,24)}
+              min={new Date(2019, 11, 1)}
+              max={new Date(2019, 11, 24)}
               footer={false}
             />
           </div>
           <button className="btn btn-primary">Create</button>
         </form>
 
-        
+
 
 
       </div>
 
-      
+
     );
   }
 }
@@ -89,7 +89,7 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([
-    { collection: 'familyMembers', orderBy: ['createdAt', 'asc']},
-    { collection: 'family'},
+    { collection: 'familyMembers', orderBy: ['createdAt', 'asc'] },
+    { collection: 'family' },
   ])
 )(CreateDate);
